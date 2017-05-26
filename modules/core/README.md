@@ -1,8 +1,7 @@
 @react-mapboxgl/core
 ====================
 
-This is the core module for `@react-mapboxgl`. Please see the main README or
-the [documentation](https://terraeclipse.github.io/react-mapboxgl).
+This is the core module for `@react-mapboxgl`. Please see the [main README](https://github.com/TerraEclipse/react-mapboxgl) or the [documentation](https://terraeclipse.github.io/react-mapboxgl).
 
 - - -
 
