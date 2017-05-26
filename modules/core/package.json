@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Core module for @react-mapboxgl",
   "standard": {
     "parser": "babel-eslint"
