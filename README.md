@@ -44,7 +44,7 @@ Sandbox
 
 You can easily play around with maps on codesandbox.io:
 
-[![Edit @react-mapboxgl Playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/E9p5AG5X0)
+[![Edit @react-mapboxgl Playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/E9p5AG5X0?hidenavigation=1)
 
 
 Quick Example
