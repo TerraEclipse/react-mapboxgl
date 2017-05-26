@@ -108,8 +108,7 @@ const ExampleMap = () => {
             leverage that to filter layers or otherwise modify them.
 
             The *property* should be a member of `feature.properties` that
-            uniquely identifies each feature. Used to track actively hovering
-            features.
+            uniquely identifies each feature.
         */}
         <Hover layer='states-fill' property='name'>
           {({properties: names}) => (
