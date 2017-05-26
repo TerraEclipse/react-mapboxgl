@@ -1,12 +1,12 @@
 /**
- * Mapbox - Controls
+ * Examples - Controls
  *
  * ## Map with Controls
  * An example map with all of the possible mapbox-gl-js controls added.
  */
 import React from 'react'
-import {MapGL, Control} from '../'
-import {defaults} from './_utils'
+import {MapGL, Control} from '../../'
+import defaults from '../defaults'
 
 const Story = () => (
   <MapGL {...defaults}>

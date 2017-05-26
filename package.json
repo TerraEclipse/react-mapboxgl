@@ -6,6 +6,7 @@
   },
   "scripts": {
     "install": "yarn run bootstrap",
+    "test": "yarn run exec -- yarn run test",
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
     "exec": "lerna exec --concurrency 1",

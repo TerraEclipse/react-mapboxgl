@@ -1,14 +1,14 @@
 /**
- * Mapbox - Toggle
+ * Examples - Toggle
  *
  * ## Toggle Features in a Layer
  * 'Toggles' features in a layer, using them in a children render function to add a fill color.
  */
 import React from 'react'
-import {MapGL, Source, Layer, Toggle} from '../'
-import Overlay from './components/Overlay'
-import Checkbox from './components/Checkbox'
-import {defaults} from './_utils'
+import {MapGL, Source, Layer, Toggle} from '../../'
+import Overlay from '../_components/Overlay'
+import Checkbox from '../_components/Checkbox'
+import defaults from '../defaults'
 
 class Story extends React.Component {
   state = {

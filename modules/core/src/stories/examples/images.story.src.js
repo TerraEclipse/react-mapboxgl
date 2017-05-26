@@ -1,20 +1,20 @@
 /**
- * Mapbox - Images
+ * Examples - Images
  *
  * ## Load and Use Custom Images
  * Loads images into the map sprite (limited size), then use them in
  * layer paint options. Assumes a webpack setup with `url-loader` for images.
  */
 import React from 'react'
-import {MapGL, LoadImages, Layer} from '../'
-import {defaults} from './_utils'
+import {MapGL, LoadImages, Layer} from '../../'
+import defaults from '../defaults'
 
 const Story = () => (
   <MapGL {...defaults}>
     <LoadImages
-      giants={require('./assets/giants.png')}
-      nats={require('./assets/nats.png')}
-      greenPattern={require('./assets/green-pattern.jpg')}
+      giants={require('../_assets/giants.png')}
+      nats={require('../_assets/nats.png')}
+      greenPattern={require('../_assets/green-pattern.jpg')}
     >
       <Layer
         id='teams'

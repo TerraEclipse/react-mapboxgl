@@ -1,12 +1,12 @@
 /**
- * Mapbox - Readme Example
+ * Examples - Hover
  *
- * ## Readme Example - Hoverable Polygons
- * Adds polygons to the map and changes the fill color on hover.
+ * ## Hovering Features
+ * Hover over map features to change the fill color.
  */
 import React from 'react'
-import {MapGL, Source, Layer, Hover} from '../'
-import {defaults} from './_utils'
+import {MapGL, Source, Layer, Hover} from '../../'
+import defaults from '../defaults'
 
 const Story = () => {
   return (

@@ -4,7 +4,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import loadMapbox from './util/loadMapbox'
 import MapEvents from './MapEvents'
 import MapOptions from './MapOptions'
 import MapPosition from './MapPosition'
@@ -13,7 +12,6 @@ import Children from './Children'
 
 class MapGL extends React.Component {
   static propTypes = {
-    accessToken: PropTypes.string.isRequired,
     containerStyle: PropTypes.object,
     loadCSS: PropTypes.bool,
     renderUnsupported: PropTypes.func,
@@ -28,40 +26,36 @@ class MapGL extends React.Component {
   static defaultProps = {
     loadCSS: true,
     containerStyle: {
-      position: 'relative'
+      position: 'relative',
+      width: '100%',
+      paddingBottom: '50%'
     }
   }
 
-  static childContextTypes = {
-    map: PropTypes.object,
+  static contextTypes = {
     mapboxgl: PropTypes.object
+  }
+
+  static childContextTypes = {
+    map: PropTypes.object
   }
 
   state = {
     unsupported: false,
-    map: null,
-    mapboxgl: null
+    map: null
   }
 
   getChildContext = () => ({
-    map: this.state.map,
-    mapboxgl: this.state.mapboxgl
+    map: this.state.map
   })
 
   componentDidMount () {
-    loadMapbox({loadCSS: this.props.loadCSS})
-      .then((mapboxgl) => {
-        if (!this.unmounted) {
-          this.setState({mapboxgl: mapboxgl})
-          this.createMap(mapboxgl)
-        }
-      })
-      .catch((err) => {
-        if (!this.unmounted) {
-          console.warn(err)
-          this.setState({unsupported: true})
-        }
-      })
+    let {mapboxgl} = this.context
+    if (mapboxgl.supported()) {
+      this.createMap()
+    } else {
+      this.setState({unsupported: true})
+    }
   }
 
   componentWillUnmount () {
@@ -91,8 +85,8 @@ class MapGL extends React.Component {
     }
   }
 
-  createMap (mapboxgl) {
-    mapboxgl.accessToken = this.props.accessToken
+  createMap () {
+    let {mapboxgl} = this.context
 
     // Build options from sub-components.
     const options = _.extend(

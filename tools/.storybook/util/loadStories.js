@@ -5,7 +5,7 @@ import {storiesOf, action} from '@kadira/storybook'
  */
 export default function loadStories () {
   // Create webpack require context for stories and load them.
-  const reqStory = require.context('../../../modules', true, /\.story\.js$/)
+  const reqStory = require.context('../../../modules', true, /.*\/src\/.*\.story\.js$/)
   reqStory.keys().forEach((filepath) => {
     reqStory(filepath).default({storiesOf, action})
   })

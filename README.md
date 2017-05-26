@@ -9,26 +9,18 @@ scared away!
 About
 -----
 
-Inspired greatly by [react-mapbox-gl](https://github.com/alex3165/react-mapbox-gl), this
-aims to be as close of a 1-to-1 mapping of the `mapbox-gl-js` API to react as possible. It
-takes the largely imperative `mapbox-gl-js` codebase and wraps it in declarative
-react components. A few goals:
+This aims to be as close of a 1-to-1 mapping of the `mapbox-gl-js` API to react as possible. It takes the largely imperative `mapbox-gl-js` codebase and wraps it in declarative react components. A few goals:
 
 - Declarative way to create mapbox-gl maps.
 - Support as close to 100% of the `mapbox-gl-js` API as makes sense.
 - Leverage the `mapbox-gl-js` way of doing things wherever possible.
-  - Unlinke Uber's mapbox lib (which is great), this means using the mapbox
-    api to handle map position, movement, etc. (but with a prop-based API).
-  - Doesn't provide too many high-level abstractions for things like 'Features'
-    or 'Markers' (yet), rather provide the building blocks to do that using
-    idiomatic mapbox-gl methods.
-  - This means we get to rely on mapbox's performance improvements wherever
-    possible, rather than having to engineer our own.
 - "Everything is a component"
   - You should be able to do thinks like render layers, bind click handlers,
     respond to hovering over layers, ect. by merely rendering components.
   - Many maps will only need a render method, no state to juggle.
   - The core attempts to split things out to composable components wherever possible.
+
+Inspired and bootstrapped from [react-mapbox-gl](https://github.com/alex3165/react-mapbox-gl).
 
 Installation
 ------------
@@ -36,22 +28,23 @@ Installation
 Currently, this module needs to be bundled by *your* app. If you are already
 using something like webpack or rollup, you should be good to go. It requires
 installing some peer dependencies. I chose this to avoid increasing the
-bundle size, especially if you're already using some of these libraries.
+bundle size if you're already using some of these libraries.
 
 ```sh
-$ npm install --save \
-    @react-mapboxgl/core \
-    mapbox-gl \
-    lodash \
-    react \
-    prop-types
+$ npm install --save @react-mapboxgl/core mapbox-gl lodash react prop-types
 ```
+
+Documentation
+-------------
+
+Documentation and examples can be found in the [storybook](https://terraeclipse.github.io/react-mapboxgl).
+
 
 Quick Example
 -------------
 
 This renders a map, adds a source and layer to the map, and changes the fill
-of polygon features when they are hovered. See it in action [in the documentation](https://terraeclipse.github.io/react-mapboxgl).
+of polygon features when they are hovered. See it in action [in the storybook](https://terraeclipse.github.io/react-mapboxgl).
 
 ```js
 import React from 'react'

@@ -1,5 +1,5 @@
 /**
- * Mapbox - Interactive Polygons
+ * Examples - Interactive Polygons
  *
  * ## Interactive Map with Polygons
  * Uses the InteractiveLayer 'meta component' to add polygons
@@ -7,8 +7,8 @@
  */
 import React from 'react'
 import bbox from '@turf/bbox'
-import {MapGL, Hover, Toggle, InteractiveLayer} from '../'
-import {defaults} from './_utils'
+import {MapGL, Hover, Toggle, InteractiveLayer} from '../../'
+import defaults from '../defaults'
 
 class Story extends React.Component {
   state = {

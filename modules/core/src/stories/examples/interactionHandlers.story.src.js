@@ -1,5 +1,5 @@
 /**
- * Mapbox - Interaction Handlers
+ * Examples - Interaction Handlers
  *
  * ## Turn Map Interaction Handlers On/Off
  * Toggle any of the map interaction handlers.
@@ -7,10 +7,10 @@
 import React from 'react'
 import _ from 'lodash'
 import {action} from '@kadira/storybook'
-import {MapGL} from '../'
-import Options from './components/Options'
-import Checkbox from './components/Checkbox'
-import {defaults} from './_utils'
+import {MapGL} from '../../'
+import Options from '../_components/Options'
+import Checkbox from '../_components/Checkbox'
+import defaults from '../defaults'
 
 class Story extends React.Component {
   state = {

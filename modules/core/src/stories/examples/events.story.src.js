@@ -1,5 +1,5 @@
 /**
- * Mapbox - Events
+ * Examples - Events
  *
  * ## Map Events
  * Toggle any of the possible map events to start logging them.
@@ -7,10 +7,11 @@
 import React from 'react'
 import _ from 'lodash'
 import {action} from '@kadira/storybook'
-import {MapGL, MapEvents} from '../'
-import Options from './components/Options'
-import Checkbox from './components/Checkbox'
-import {defaults, sanitizeMapEvent} from './_utils'
+import {MapGL, MapEvents} from '../../'
+import Options from '../_components/Options'
+import Checkbox from '../_components/Checkbox'
+import defaults from '../defaults'
+import sanitizeMapEvent from '../sanitizeMapEvent'
 
 const eventHandlers = _.mapValues(MapEvents.propTypes, (t, name) => {
   return (e) => {

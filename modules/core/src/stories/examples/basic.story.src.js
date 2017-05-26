@@ -1,12 +1,12 @@
 /**
- * Mapbox - Basic
+ * Examples - Basic
  *
  * ## Basic Map with Features
  * Render a map with geojson features.
  */
 import React from 'react'
-import {MapGL, Layer} from '../'
-import {defaults} from './_utils'
+import {MapGL, Layer} from '../../'
+import defaults from '../defaults'
 
 const Story = () => (
   <MapGL {...defaults}>

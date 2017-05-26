@@ -1,13 +1,13 @@
 /**
- * Mapbox - Popups
+ * Examples - Popups
  *
  * ## Add Popups to A Map
  * Adds text, html, and react children Popups to the map.
  */
 import './popup.story.css'
 import React from 'react'
-import {MapGL, Layer, Toggle, Hover, Popup} from '../'
-import {defaults} from './_utils'
+import {MapGL, Layer, Toggle, Hover, Popup} from '../../'
+import defaults from '../defaults'
 
 const geojson = {
   'type': 'FeatureCollection',

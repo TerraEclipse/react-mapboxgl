@@ -1,5 +1,5 @@
 /**
- * Mapbox - Markers
+ * Examples - Markers
  *
  * ## Add Markers to a Map
  * While not as performant as Layers for large data-sets, markers make
@@ -7,9 +7,9 @@
  */
 import React from 'react'
 import {action} from '@kadira/storybook'
-import {MapGL, Marker} from '../'
-import {defaults} from './_utils'
-import Overlay from './components/Overlay'
+import {MapGL, Marker} from '../../'
+import defaults from '../defaults'
+import Overlay from '../_components/Overlay'
 
 const geojson = {
   'type': 'FeatureCollection',
