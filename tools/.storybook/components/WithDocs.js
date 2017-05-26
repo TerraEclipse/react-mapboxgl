@@ -23,8 +23,9 @@ class WithSource extends React.Component {
   render () {
     return (
       <div className='storybook-with-docs'>
-        {this.props.blocks.map((block) => (
-          <div className='block'>
+        <ReactMarkdown className='description' source={this.props.description} />
+        {this.props.blocks.map((block, i) => (
+          <div key={i} className='block'>
             {block.markdown ? (
               <ReactMarkdown className='description' source={block.markdown} />
             ) : null}

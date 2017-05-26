@@ -1,8 +1,8 @@
 // Helper to parse comment -> code blocks from source.
 export default function parseBlocks (raw, source) {
   let blocks = []
-  let rawRegex = /\/(\*)[^*]*\*+(?:[^*/][^*]*\*+)*\//m
-  let sourceRegex = /^<span class="token comment"[^>]+>[^<]*<\/span>/m
+  let rawRegex = /\/\*\*[^*]*\*+(?:[^*/][^*]*\*+)*\//m
+  let sourceRegex = /^<span class="token comment"[^>]+>\/\*\*[^<]*<\/span>/m
 
   // Remove the first comment from the raw.
   raw = raw.replace(rawRegex, '')
