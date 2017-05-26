@@ -39,6 +39,13 @@ Documentation
 
 Documentation and examples can be found in the [storybook](https://terraeclipse.github.io/react-mapboxgl).
 
+Sandbox
+-------
+
+You can easily play around with maps on codesandbox.io:
+
+[![Edit @react-mapboxgl Playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/E9p5AG5X0)
+
 
 Quick Example
 -------------
