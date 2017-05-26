@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+const path = require('path')
+const exec = require('./exec')
+
+// Using this because `lerna run --scope` requires '@terraeclipse/' prefix.
+function moduleDo (mod, cmd, ...rest) {
+  const modDir = path.resolve(__dirname, '../modules', mod)
+  exec(`yarn run ${cmd} -- ${rest.join(' ')}`, {cwd: modDir})
+}
+
+// Are we running this directly?
+if (process.argv[0].match(/bin\/node$/) && process.argv[1].match(/module-do$/)) {
+  if (!process.argv[2]) {
+    console.error('Error: Please specify a module name')
+  } else if (!process.argv[3]) {
+    console.error('Error: Please specify a cmd')
+  } else {
+    moduleDo(...process.argv.slice(2))
+  }
+}
+
+module.exports = moduleDo

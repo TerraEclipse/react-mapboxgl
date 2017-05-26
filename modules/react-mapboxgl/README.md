@@ -1,0 +1,12 @@
+@react-mapboxgl/core
+====================
+
+This is the core module for `@react-mapboxgl`. Please see the main README or
+the [documentation](https://terraeclipse.github.io/react-mapboxgl).
+
+- - -
+
+#### Developed by [TerraEclipse](https://github.com/TerraEclipse)
+
+Terra Eclipse, Inc. is a nationally recognized political technology and
+strategy firm located in Santa Cruz, CA and Washington, D.C.

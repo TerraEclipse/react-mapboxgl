@@ -1,0 +1,5 @@
+/coverage
+/node_modules
+lerna-debug.log
+npm-debug.log
+.yo-rc.json

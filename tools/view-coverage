@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+const path = require('path')
+const exec = require('./exec')
+
+function viewCoverage (mod) {
+  exec(`open ${path.resolve(__dirname, '../modules', mod, 'coverage/lcov-report/index.html')}`)
+}
+
+// Are we running this directly?
+if (process.argv[0].match(/bin\/node$/) && process.argv[1].match(/view-coverage$/)) {
+  if (!process.argv[2]) {
+    console.error('Error: Please specify a module name')
+  } else {
+    viewCoverage(...process.argv.slice(2))
+  }
+}
+
+module.exports = viewCoverage

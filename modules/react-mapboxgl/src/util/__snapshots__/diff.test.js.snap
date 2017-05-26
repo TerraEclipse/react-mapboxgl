@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`diff can diff two objects 1`] = `
+Array [
+  Object {
+    "key": "favorite",
+    "type": "remove",
+    "value": true,
+  },
+  Object {
+    "key": "vegetarian",
+    "type": "add",
+    "value": false,
+  },
+  Object {
+    "key": "name",
+    "type": "update",
+    "value": "bacon quiche",
+  },
+  Object {
+    "key": "ingredients",
+    "type": "update",
+    "value": Array [
+      "eggs",
+      "cream",
+      "cheese",
+      "bacon",
+    ],
+  },
+  Object {
+    "key": "status",
+    "type": "update",
+    "value": Object {
+      "ate": true,
+      "baked": true,
+      "prepared": true,
+    },
+  },
+]
+`;

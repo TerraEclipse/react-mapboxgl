@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+const path = require('path')
+const exec = require('./exec')
+
+function testModule (cwd, args = []) {
+  const rootDir = path.resolve(__dirname, '../')
+  const relCwd = path.relative(rootDir, cwd)
+  let cmd
+
+  // Add our args.
+  args = args.concat([
+    `--roots ${relCwd}/src`,
+    `--collectCoverageFrom ${relCwd}/src/**/*.js`,
+    `--coverageDirectory ${relCwd}/coverage`
+  ])
+
+  // Create and print the cmd.
+  cmd = `jest ${args.join(' ')}`
+  console.log(cmd)
+
+  exec(cmd, {
+    cwd: rootDir,
+    env: {
+      NODE_ENV: 'test',
+      BABEL_ENV: 'node'
+    }
+  })
+}
+
+// Are we running this directly?
+if (process.argv[0].match(/bin\/node$/) && process.argv[1].match(/test-module$/)) {
+  testModule(process.cwd(), process.argv.slice(2))
+}
+
+module.exports = testModule

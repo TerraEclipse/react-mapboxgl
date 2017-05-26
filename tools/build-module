@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+const path = require('path')
+const exec = require('./exec')
+
+function buildModule (cwd) {
+  const pkg = require(path.join(cwd, 'package.json'))
+  const src = path.join(cwd, 'src')
+  const cjs = path.join(cwd, 'lib')
+  const es = path.join(cwd, 'es')
+  const babelIgnore = [
+    '**/*.story.js',
+    '**/test/**',
+    '**/*.test.js',
+    '**/__snapshots__/**',
+    '**/__fixtures__/**',
+    '**/__mocks__/**'
+  ].join(',')
+
+  console.log(`Building ${pkg.name} ...`)
+
+  console.log('  - Building CommonJS modules')
+  exec(`rimraf ${cjs}`)
+  exec(`babel --quiet --copy-files --ignore ${babelIgnore} --out-dir ${cjs} ${src}`, {
+    cwd: cwd,
+    env: {
+      NODE_ENV: process.env.NODE_ENV || 'production',
+      BABEL_ENV: 'commonjs'
+    }
+  })
+
+  console.log('  - Building ES modules')
+  exec(`rimraf ${es}`)
+  exec(`babel --quiet --copy-files --ignore ${babelIgnore} --out-dir ${es} ${src}`, {
+    cwd: cwd,
+    env: {
+      NODE_ENV: process.env.NODE_ENV || 'production',
+      BABEL_ENV: 'es'
+    }
+  })
+}
+
+// Are we running this directly?
+if (process.argv[0].match(/bin\/node$/) && process.argv[1].match(/build-module$/)) {
+  buildModule(process.cwd())
+}
+
+module.exports = buildModule
