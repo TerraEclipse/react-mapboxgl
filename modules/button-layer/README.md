@@ -39,7 +39,6 @@ An example usage. See it in action [in the storybook](https://terraeclipse.githu
 import React from 'react'
 import bbox from '@turf/bbox'
 import {MapboxProvider, MapGL} from '@react-mapboxgl/core'
-import Hover from '@react-mapboxgl/hover'
 import Toggle from '@react-mapboxgl/toggle'
 import ButtonLayer from './'
 
@@ -140,23 +139,6 @@ class Example extends React.Component {
               }
             }}
           />
-          <Hover layer='states' property='name'>
-            {({properties: names}) => names[0] ? (
-              <h2 style={{
-                position: 'absolute',
-                top: 10,
-                left: 10,
-                margin: 0,
-                padding: 10,
-                backgroundColor: '#333',
-                color: '#ddd',
-                boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.3)',
-                zIndex: 10
-              }}>
-                {names[0]}
-              </h2>
-            ) : null}
-          </Hover>
           <Toggle
             layer='states'
             property='name'
