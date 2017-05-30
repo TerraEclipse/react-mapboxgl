@@ -13,9 +13,9 @@ const TOKEN = 'pk.eyJ1IjoidGVycmEiLCJhIjoiVmNta3lMSSJ9.V4vST11PV1hulV2Mf9DqdQ'
  */
 export default function loadSourceStories () {
   // Create webpack require contexts for 'source' stories and load them.
-  const reqSourceStory = require.context('../../../modules', true, /.*\/src\/.*\.story\.src\.js$/)
-  const reqSourceRaw = require.context('!!raw!../../../modules', true, /.*\/src\/.*\.story\.src\.js$/)
-  const reqSourcePrism = require.context('!!prismjs?lang=jsx!../../../modules', true, /.*\/src\/.*\.story\.src\.js$/)
+  const reqSourceStory = require.context('../../../modules', true, /\.\/[^/]+\/src\/.*\.story\.src\.js$/)
+  const reqSourceRaw = require.context('!!raw!../../../modules', true, /\.\/[^/]+\/src\/.*\.story\.src\.js$/)
+  const reqSourcePrism = require.context('!!prismjs?lang=jsx!../../../modules', true, /\.\/[^/]+\/src\/.*\.story\.src\.js$/)
   reqSourceStory.keys().forEach((filepath) => {
     let Story = reqSourceStory(filepath).default
     let raw = reqSourceRaw(filepath)

@@ -9,6 +9,8 @@ function buildModule (cwd) {
   const es = path.join(cwd, 'es')
   const babelIgnore = [
     '**/*.story.js',
+    '**/*.story.docs.js',
+    '**/*.story.src.js',
     '**/test/**',
     '**/*.test.js',
     '**/__snapshots__/**',

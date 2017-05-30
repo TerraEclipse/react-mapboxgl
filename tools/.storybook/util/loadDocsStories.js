@@ -9,8 +9,8 @@ import WithDocs from '../components/WithDocs'
  */
 export default function loadDocsStories () {
   // Create webpack require contexts for 'source' stories and load them.
-  const reqSourceRaw = require.context('!!raw!../../../modules', true, /.*\/src\/.*\.story\.docs\.js$/)
-  const reqSourcePrism = require.context('!!prismjs?lang=jsx!../../../modules', true, /.*\/src\/.*\.story\.docs\.js$/)
+  const reqSourceRaw = require.context('!!raw!../../../modules', true, /\.\/[^/]+\/src\/.*\.story\.docs\.js$/)
+  const reqSourcePrism = require.context('!!prismjs?lang=jsx!../../../modules', true, /\.\/[^/]+\/src\/.*\.story\.docs\.js$/)
   reqSourceRaw.keys().forEach((filepath) => {
     let raw = reqSourceRaw(filepath)
     let source = reqSourcePrism(filepath)

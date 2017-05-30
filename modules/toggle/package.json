@@ -1,10 +1,10 @@
 {
-  "name": "@react-mapboxgl/core",
+  "name": "@react-mapboxgl/toggle",
   "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Core module for @react-mapboxgl",
+  "description": "Toggle component for @react-mapboxgl",
   "standard": {
     "parser": "babel-eslint"
   },
@@ -22,18 +22,19 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
+    "@react-mapboxgl/core": "^1.0.1",
+    "@react-mapboxgl/click": "^1.0.1",
     "@react-mapboxgl/docs": "^1.0.1"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "lodash": "^4.17.4",
-    "mapbox-gl": "^0.37.0",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "prop-types": "^15.5.10"
   },
   "author": "Brian Link",
   "license": "Apache-2.0",
@@ -44,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/TerraEclipse/react-mapboxgl/issues"
   },
-  "homepage": "https://github.com/TerraEclipse/react-mapboxgl/tree/master/modules/react-mapbox#readme",
+  "homepage": "https://github.com/TerraEclipse/react-mapboxgl/tree/master/modules/toggle#readme",
   "keywords": [
     "react-component"
   ]
