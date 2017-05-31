@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-class Image extends React.Component {
+class Image extends React.PureComponent {
   static propTypes = {
     name: React.PropTypes.string,
     image: React.PropTypes.any // HTMLImageElement | ArrayBufferView

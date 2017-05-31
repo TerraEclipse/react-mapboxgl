@@ -5,6 +5,14 @@ import _ from 'lodash'
  * 'changes' where a change is either an 'add', 'remove', or 'update'.
  */
 export default function diff (a, b) {
+  // Throw is a or b are not objects.
+  if (!_.isPlainObject(a)) {
+    throw new Error('First parameter to diff() is not an object')
+  }
+  if (!_.isPlainObject(b)) {
+    throw new Error('Second parameter to diff() is not an object')
+  }
+
   let changes = []
   let keysA = _.keys(a)
   let keysB = _.keys(b)

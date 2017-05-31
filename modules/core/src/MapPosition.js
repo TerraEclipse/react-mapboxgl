@@ -29,7 +29,13 @@ class MapPosition extends React.Component {
     ]),
     moveAround: PropTypes.array,
     moveAnimationOptions: PropTypes.object,
-    moveFlyToOptions: PropTypes.object
+    moveFlyToOptions: PropTypes.object,
+
+    // The positionRev provies a way to 'hard reset' the map
+    // position. For example, if you want to reset the position to the
+    // original props values (without changing the props values). An easy
+    // way to use this would be to set it to a timestamp.
+    positionRev: PropTypes.number
   }
 
   static defaultProps = {
@@ -47,7 +53,8 @@ class MapPosition extends React.Component {
     // Default custom options.
     moveMethod: 'flyTo',
     moveAnimationOptions: {},
-    moveFlyToOptions: {}
+    moveFlyToOptions: {},
+    positionRev: 0
   }
 
   static contextTypes = {
@@ -64,8 +71,16 @@ class MapPosition extends React.Component {
       'moveMethod',
       'moveAround',
       'moveAnimationOptions',
-      'moveFlyToOptions'
+      'moveFlyToOptions',
+      'positionRev'
     ])
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
   }
 
   componentDidMount () {
@@ -79,40 +94,36 @@ class MapPosition extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     const {map} = this.context
-    const center = map.getCenter()
-    const didCenterUpdate = (
-      this.props.center !== nextProps.center && (
-        nextProps.center[0] !== center.lng ||
-        nextProps.center[1] !== center.lat
-      )
-    )
 
-    const zoom = map.getZoom()
-    const didZoomUpdate = (
-      this.props.zoom !== nextProps.zoom &&
-      nextProps.zoom !== zoom
-    )
+    const didCenterUpdate = !_.isEqual(this.props.center, nextProps.center)
+    const didZoomUpdate = this.props.zoom !== nextProps.zoom
+    const didBearingUpdate = this.props.bearing !== nextProps.bearing
+    const didPitchUpdate = this.props.pitch !== nextProps.pitch
+    let cameraOptions = null
 
-    const bearing = map.getBearing()
-    const didBearingUpdate = (
-      this.props.bearing !== nextProps.bearing &&
-      nextProps.bearing !== bearing
-    )
-
-    const pitch = map.getPitch()
-    const didPitchUpdate = (
-      this.props.pitch !== nextProps.pitch &&
-      nextProps.pitch !== pitch
-    )
-
+    // Position props changed.
     if (didZoomUpdate || didCenterUpdate || didBearingUpdate || didPitchUpdate) {
-      let cameraOptions = {
-        center: didCenterUpdate ? nextProps.center : center,
-        zoom: didZoomUpdate ? nextProps.zoom : zoom,
-        bearing: didBearingUpdate ? nextProps.bearing : bearing,
-        pitch: didPitchUpdate ? nextProps.pitch : pitch,
+      cameraOptions = {
+        center: didCenterUpdate ? nextProps.center : map.getCenter(),
+        zoom: didZoomUpdate ? nextProps.zoom : map.getZoom(),
+        bearing: didBearingUpdate ? nextProps.bearing : map.getBearing(),
+        pitch: didPitchUpdate ? nextProps.pitch : map.getPitch(),
         around: nextProps.moveAround
       }
+    }
+
+    // PositionRev changed.
+    if (this.props.positionRev !== nextProps.positionRev) {
+      cameraOptions = {
+        center: !_.isUndefined(nextProps.center) ? nextProps.center : map.getCenter(),
+        zoom: !_.isUndefined(nextProps.zoom) ? nextProps.zoom : map.getZoom(),
+        bearing: !_.isUndefined(nextProps.bearing) ? nextProps.bearing : map.getBearing(),
+        pitch: !_.isUndefined(nextProps.pitch) ? nextProps.pitch : map.getPitch(),
+        around: nextProps.moveAround
+      }
+    }
+
+    if (cameraOptions) {
       map[nextProps.moveMethod](_.extend(
         cameraOptions,
         nextProps.moveMethod !== 'jumpTo'

@@ -95,6 +95,7 @@ class Story extends React.Component {
           {geojson.features.map((feature) => {
             return this.state[feature.properties.name] ? (
               <Popup
+                key={feature.properties.id}
                 coordinates={feature.geometry.coordinates}
                 text={feature.properties.text || null}
                 html={feature.properties.html || null}

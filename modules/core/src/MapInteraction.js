@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-class MapInteraction extends React.Component {
+class MapInteraction extends React.PureComponent {
   static propTypes = {
     interactive: PropTypes.bool,
     scrollZoom: PropTypes.bool,

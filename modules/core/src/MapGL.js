@@ -49,6 +49,13 @@ class MapGL extends React.Component {
     map: this.state.map
   })
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
+  }
+
   componentDidMount () {
     let {mapboxgl} = this.context
     if (mapboxgl.supported()) {
@@ -69,13 +76,6 @@ class MapGL extends React.Component {
         map.remove()
       })
     }
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    return (
-      !_.isEqual(this.props, nextProps) ||
-      !_.isEqual(this.state, nextState)
-    )
   }
 
   componentWillReceiveProps (nextProps) {
@@ -140,10 +140,10 @@ class MapGL extends React.Component {
           this.renderUnsupported()
         ) : map ? (
           <Children>
-            <MapOptions {...this.props} />
-            <MapPosition {...this.props} />
-            <MapInteraction {...this.props} />
-            <MapEvents {...this.props} />
+            <MapOptions {..._.pick(this.props, _.keys(MapOptions.propTypes))} />
+            <MapPosition {..._.pick(this.props, _.keys(MapPosition.propTypes))} />
+            <MapInteraction {..._.pick(this.props, _.keys(MapInteraction.propTypes))} />
+            <MapEvents {..._.pick(this.props, _.keys(MapEvents.propTypes))} />
             {this.props.children}
           </Children>
         ) : null}

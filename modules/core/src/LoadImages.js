@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import {Children, Image} from './'
 
-class LoadImages extends React.Component {
+class LoadImages extends React.PureComponent {
   static propTypes = {
     children: React.PropTypes.node
   }
@@ -13,8 +13,8 @@ class LoadImages extends React.Component {
   }
 
   state = {
-    images: {},
-    loaded: false
+    loaded: false,
+    images: {}
   }
 
   constructor () {
@@ -23,9 +23,32 @@ class LoadImages extends React.Component {
   }
 
   componentDidMount () {
-    let images = _.omit(this.props, 'children')
-    Promise.all(_.map(images, this.loadImage)).then(() => {
-      this.setState({loaded: true})
+    this.mounted = true
+    this.loadImages(_.omit(this.props, 'children'))
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (!_.isEqual(
+      _.omit(this.props, 'children'),
+      _.omit(nextProps, 'children')
+    )) {
+      this.loadImages(_.omit(this.props, 'children'))
+    }
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
+  }
+
+  loadImages (images) {
+    this.setState({loaded: false})
+    Promise.all(_.map(images, this.loadImage)).then((results) => {
+      if (this.mounted) {
+        this.setState({
+          loaded: true,
+          images: _.fromPairs(results)
+        })
+      }
     })
   }
 
@@ -34,24 +57,20 @@ class LoadImages extends React.Component {
     return new Promise((resolve, reject) => {
       map.loadImage(src, (err, image) => {
         if (err) return reject(err)
-        this.setState((state) => {
-          state.images[name] = image
-          return state
-        })
-        resolve()
+        resolve([name, image])
       })
     })
   }
 
   render () {
-    return this.state.loaded ? (
+    return (
       <Children>
         {_.map(this.state.images, (image, name) => (
           <Image key={name} name={name} image={image} />
         ))}
-        {this.props.children}
+        {this.state.loaded ? this.props.children : null}
       </Children>
-    ) : null
+    )
   }
 }
 

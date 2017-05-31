@@ -14,7 +14,7 @@
     "do": "./tools/module-do",
     "nuke": "yarn run clean && lerna clean --yes",
     "reinstall": "yarn run nuke && yarn run exec yarn && yarn run lerna bootstrap",
-    "storybook": "BABEL_ENV=commonjs start-storybook -p 3005 -c ./tools/.storybook",
+    "storybook": "NODE_ENV=develop BABEL_ENV=commonjs start-storybook -p 3005 -c ./tools/.storybook",
     "docs": "BABEL_ENV=commonjs build-storybook -c ./tools/.storybook -o ./docs",
     "view-coverage": "./tools/view-coverage"
   },

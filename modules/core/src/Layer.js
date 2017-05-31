@@ -35,6 +35,13 @@ class Layer extends React.Component {
     map: PropTypes.object
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
+  }
+
   componentDidMount () {
     let {map} = this.context
     let options = {}
@@ -84,12 +91,12 @@ class Layer extends React.Component {
       map.setFilter(this.props.id, nextProps.filter)
     }
 
-    _.each(diff(this.props.layout, nextProps.layout), ({type, key, val}) => {
-      map.setLayoutProperty(this.props.id, key, type === 'remove' ? null : val)
+    _.each(diff(this.props.layout || {}, nextProps.layout || {}), ({type, key, value}) => {
+      map.setLayoutProperty(this.props.id, key, type === 'remove' ? null : value)
     })
 
-    _.each(diff(this.props.paint, nextProps.paint), ({type, key, val}) => {
-      map.setPaintProperty(this.props.id, key, type === 'remove' ? null : val)
+    _.each(diff(this.props.paint || {}, nextProps.paint || {}), ({type, key, value}) => {
+      map.setPaintProperty(this.props.id, key, type === 'remove' ? null : value)
     })
 
     if (this.props.before !== nextProps.before) {

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-class MapOptions extends React.Component {
+class MapOptions extends React.PureComponent {
   static propTypes = {
     style: PropTypes.oneOfType([
       PropTypes.string,

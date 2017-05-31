@@ -1,15 +1,16 @@
 @react-mapboxgl/toggle
 ======================
 
-About
------
-
-Describe component here.
+The `Toggle` component binds listeners for the proper map and layer click events
+needed to 'toggle' features. You can either respond to toggled features with
+the `onToggle` prop, or pass a function as the children which will receive `{features, properties}`,
+where `features` is an array of toggled features, and `properties` is an array
+containing the unique property values of the toggled layers (useful shortcut for filters).
 
 Usage
 -----
 
-Describe usage here.
+For an example usage, [see the storybook](https://terraeclipse.github.io/react-mapboxgl/?selectedKind=Toggle&selectedStory=Example).
 
 - - -
 

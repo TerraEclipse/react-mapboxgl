@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class MapEvent extends React.Component {
+class MapEvent extends React.PureComponent {
   static propTypes = {
     type: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired

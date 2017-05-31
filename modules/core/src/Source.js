@@ -37,6 +37,13 @@ class Source extends React.Component {
     map: PropTypes.object
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
+  }
+
   componentDidMount () {
     this.addSource(this.props)
   }

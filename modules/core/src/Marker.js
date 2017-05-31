@@ -19,6 +19,13 @@ class Marker extends React.Component {
     mapboxgl: PropTypes.object
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
+  }
+
   componentDidMount () {
     // Setup marker div.
     this.el = document.createElement('div')
@@ -77,9 +84,11 @@ class Marker extends React.Component {
     if (this.component) {
       ReactDOM.unmountComponentAtNode(this.el)
     }
-    this.component = ReactDOM.unstable_renderSubtreeIntoContainer(this, (
-      React.Children.only(props.children)
-    ), this.el)
+    this.component = ReactDOM.unstable_renderSubtreeIntoContainer(
+      this,
+      props.children,
+      this.el
+    )
   }
 
   render () {

@@ -12,6 +12,10 @@ class WithSource extends React.Component {
     children: PropTypes.node
   }
 
+  shouldComponentUpdate (nextProps) {
+    return false
+  }
+
   componentDidMount () {
     document.body.className += ' has-storybook-with-source'
   }

@@ -4,7 +4,7 @@ import loadCSS from './util/loadCSS'
 import loadScript from './util/loadScript'
 import pkg from '../package.json'
 
-class MapboxProvider extends React.Component {
+class MapboxProvider extends React.PureComponent {
   static propTypes = {
     // We need an access token.
     accessToken: PropTypes.string.isRequired,
@@ -83,9 +83,7 @@ class MapboxProvider extends React.Component {
   }
 
   render () {
-    return this.state.mapboxgl
-      ? React.Children.only(this.props.children)
-      : null
+    return this.state.mapboxgl ? this.props.children : null
   }
 }
 

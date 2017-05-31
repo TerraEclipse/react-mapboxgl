@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Children from './Children'
 import MapEvent from './MapEvent'
 
-class MapEvents extends React.Component {
+class MapEvents extends React.PureComponent {
   static propTypes = {
     onResize: PropTypes.func,
     onDblClick: PropTypes.func,

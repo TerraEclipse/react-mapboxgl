@@ -47,6 +47,13 @@ class Popup extends React.Component {
     mapboxgl: PropTypes.object
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return (
+      !_.isEqual(this.props, nextProps) ||
+      !_.isEqual(this.state, nextState)
+    )
+  }
+
   componentDidMount () {
     // Setup popup div.
     this.el = document.createElement('div')
@@ -135,8 +142,9 @@ class Popup extends React.Component {
       ReactDOM.unmountComponentAtNode(this.el)
     }
     if (props.children) {
-      this.component = ReactDOM.unstable_renderSubtreeIntoContainer(this,
-        React.Children.only(props.children),
+      this.component = ReactDOM.unstable_renderSubtreeIntoContainer(
+        this,
+        props.children,
         this.el
       )
     }

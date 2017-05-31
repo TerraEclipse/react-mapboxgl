@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-class Control extends React.Component {
+class Control extends React.PureComponent {
   static propTypes = {
     type: PropTypes.oneOfType([
       PropTypes.oneOf([

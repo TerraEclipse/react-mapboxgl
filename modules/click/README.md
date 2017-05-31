@@ -1,15 +1,14 @@
 @react-mapboxgl/click
 ======================
 
-About
------
-
-Describe component here.
+The `Click` component provides some convenience around the `MapEvent` or `LayerEvent`
+for click handling. It optionally avoids double clicks (for when you want
+to use double click for map zooming).
 
 Usage
 -----
 
-Describe usage here.
+For an example usage, [see the storybook](https://terraeclipse.github.io/react-mapboxgl/?selectedKind=Click&selectedStory=Example).
 
 - - -
 
