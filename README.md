@@ -57,7 +57,8 @@ of polygon features when they are hovered. See it in action [in the storybook](h
 
 ```js
 import React from 'react'
-import {MapboxProvider, MapGL, Source, Layer, Hover} from '@react-mapboxgl/core'
+import {MapboxProvider, MapGL, Source, Layer} from '@react-mapboxgl/core'
+import Hover from '@react-mapboxgl/hover'
 
 const mapOptions = {
   style: 'mapbox://styles/mapbox/streets-v9',
