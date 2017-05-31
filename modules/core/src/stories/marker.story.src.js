@@ -3,7 +3,7 @@
  *
  * ## Add Markers to a Map
  * While not as performant as Layers for large data-sets, markers make
- * it easy to add arbitrary HTML to the map.'
+ * it easy to add arbitrary HTML to the map.
  */
 import React from 'react'
 import {action} from '@kadira/storybook'
