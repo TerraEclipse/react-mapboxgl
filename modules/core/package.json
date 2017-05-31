@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/core",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +22,7 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
-    "@react-mapboxgl/docs": "^1.0.1"
+    "@react-mapboxgl/docs": "^2.0.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",

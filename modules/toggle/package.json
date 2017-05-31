@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/toggle",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -22,19 +22,19 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
-    "@react-mapboxgl/core": "^1.0.1",
-    "@react-mapboxgl/click": "^1.0.1",
-    "@react-mapboxgl/docs": "^1.0.1"
+    "@react-mapboxgl/click": "^2.0.0",
+    "@react-mapboxgl/core": "^2.0.0",
+    "@react-mapboxgl/docs": "^2.0.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",
-    "react": "^15.5.4",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4"
   },
   "devDependencies": {
     "lodash": "^4.17.4",
-    "react": "^15.5.4",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4"
   },
   "author": "Brian Link",
   "license": "Apache-2.0",
