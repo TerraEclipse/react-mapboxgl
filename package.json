@@ -19,8 +19,10 @@
     "view-coverage": "./tools/view-coverage"
   },
   "devDependencies": {
-    "@kadira/react-storybook-addon-info": "^3.4.0",
-    "@kadira/storybook": "^2.35.3",
+    "@storybook/addon-actions": "^3.0.0",
+    "@storybook/addon-info": "^3.0.0",
+    "@storybook/addon-options": "^3.0.0",
+    "@storybook/react": "^3.0.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.1",
@@ -48,6 +50,5 @@
     "rimraf": "^2.6.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
-  },
-  "dependencies": {}
+  }
 }

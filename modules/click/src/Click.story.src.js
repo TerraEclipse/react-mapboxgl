@@ -8,7 +8,7 @@
  * double-click events (useful when you want to use double-click for zooming).
  */
 import React from 'react'
-import {action} from '@kadira/storybook'
+import {action} from '@storybook/addon-actions'
 import {mapDefaults} from '@react-mapboxgl/docs'
 import {MapGL, Source, Layer} from '@react-mapboxgl/core'
 import Click from './'

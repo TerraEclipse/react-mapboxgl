@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import _ from 'lodash'
-import {action} from '@kadira/storybook'
+import {action} from '@storybook/addon-actions'
 import {mapDefaults, sanitizeMapEvent, Options, Checkbox} from '@react-mapboxgl/docs'
 import {MapGL, MapEvents} from '../'
 

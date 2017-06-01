@@ -6,7 +6,7 @@
  * it easy to add arbitrary HTML to the map.
  */
 import React from 'react'
-import {action} from '@kadira/storybook'
+import {action} from '@storybook/addon-actions'
 import {mapDefaults, Overlay} from '@react-mapboxgl/docs'
 import {MapGL, Marker} from '../'
 
