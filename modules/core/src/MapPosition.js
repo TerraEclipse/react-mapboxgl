@@ -87,7 +87,8 @@ class MapPosition extends React.Component {
     let {map} = this.context
     if (this.props.bbox) {
       map.fitBounds(this.props.bbox, {
-        padding: this.props.padding || 0
+        padding: this.props.padding || 0,
+        duration: 0
       })
     }
   }
@@ -128,18 +129,26 @@ class MapPosition extends React.Component {
         cameraOptions,
         nextProps.moveMethod !== 'jumpTo'
           ? nextProps.moveAnimationOptions
-          : null,
+          : {},
         nextProps.moveMethod === 'flyTo'
           ? nextProps.moveFlyToOptions
-          : null
+          : {}
       ))
     }
 
     if (!_.isEqual(this.props.bbox, nextProps.bbox)) {
-      map.fitBounds(nextProps.bbox, {
-        padding: nextProps.padding || 0,
-        linear: nextProps.moveMethod !== 'flyTo'
-      })
+      map.fitBounds(nextProps.bbox, _.extend(
+        {
+          padding: nextProps.padding || 0,
+          linear: nextProps.moveMethod !== 'flyTo'
+        },
+        nextProps.moveAnimationOptions
+          ? nextProps.moveAnimationOptions
+          : {},
+        nextProps.moveMethod === 'flyTo'
+          ? nextProps.moveFlyToOptions
+          : {}
+      ))
     }
   }
 
