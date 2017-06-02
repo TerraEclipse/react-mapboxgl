@@ -1,11 +1,6 @@
 @react-mapboxgl
 ===============
 
-Note: This is a brand-new work-in-progress and so Docs and tests are a WIP. The
-API likely **will** change so please lock down your version and monitor updates
-carefully. Having said that, it **is** in production use, so please don't be
-scared away!
-
 About
 -----
 
