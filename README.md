@@ -46,7 +46,7 @@ Quick Example
 -------------
 
 This renders a map, adds a source and layer to the map, and changes the fill
-of polygon features when they are hovered. See it in action [in the storybook](https://terraeclipse.github.io/react-mapboxgl/?selectedKind=Examples&selectedStory=Hover&full=0&down=0).
+of polygon features when they are hovered. See it in action [in the storybook](https://terraeclipse.github.io/react-mapboxgl/?selectedKind=Hover&selectedStory=Example&full=0&down=0).
 
 ![Hover map example](https://raw.githubusercontent.com/TerraEclipse/react-mapboxgl/master/assets/hover-map.png)
 
