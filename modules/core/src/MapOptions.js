@@ -38,6 +38,22 @@ class MapOptions extends React.PureComponent {
     ])
   }
 
+  componentDidMount () {
+    const {map} = this.context
+    if (!_.isUndefined(this.props.showTileBoundaries)) {
+      map.showTileBoundaries(this.props.showTileBoundaries)
+    }
+    if (!_.isUndefined(this.props.showCollisionBoxes)) {
+      map.showCollisionBoxes(this.props.showCollisionBoxes)
+    }
+    if (!_.isUndefined(this.props.repaint)) {
+      map.repaint(this.props.repaint)
+    }
+    if (!_.isUndefined(this.props.rtlTextPlugin)) {
+      map.setRTLTextPlugin(this.props.rtlTextPlugin)
+    }
+  }
+
   componentWillReceiveProps (nextProps) {
     const {map} = this.context
     if (!_.isEqual(this.props.style, nextProps.style)) {
