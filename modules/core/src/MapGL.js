@@ -13,7 +13,6 @@ import Children from './Children'
 class MapGL extends React.Component {
   static propTypes = {
     containerStyle: PropTypes.object,
-    loadCSS: PropTypes.bool,
     renderUnsupported: PropTypes.func,
     onLoad: PropTypes.func,
     onStyleLoad: PropTypes.func
@@ -24,7 +23,6 @@ class MapGL extends React.Component {
   }
 
   static defaultProps = {
-    loadCSS: true,
     containerStyle: {
       position: 'relative',
       width: '100%',

@@ -31,7 +31,7 @@ class MapPosition extends React.Component {
     moveAnimationOptions: PropTypes.object,
     moveFlyToOptions: PropTypes.object,
 
-    // The positionRev provies a way to 'hard reset' the map
+    // The positionRev provides a way to 'hard reset' the map
     // position. For example, if you want to reset the position to the
     // original props values (without changing the props values). An easy
     // way to use this would be to set it to a timestamp.
