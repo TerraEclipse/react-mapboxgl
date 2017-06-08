@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import diff from './util/diff'
+import Children from './Children'
 import Source from './Source'
+import LayerEvents from './LayerEvents'
 
 class Layer extends React.Component {
   static propTypes = {
@@ -29,10 +31,15 @@ class Layer extends React.Component {
     layout: PropTypes.object,
     paint: PropTypes.object,
     before: PropTypes.string
+    // LayerEvents
   }
 
   static contextTypes = {
     map: PropTypes.object
+  }
+
+  state = {
+    added: false
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -76,6 +83,7 @@ class Layer extends React.Component {
     // Add the layer to the map.
     map.addLayer(options, this.props.before)
     map.fire('_addLayer', this.props.id)
+    this.setState({added: true})
   }
 
   componentWillUnmount () {
@@ -110,10 +118,16 @@ class Layer extends React.Component {
   }
 
   render () {
-    // Render our source, or nothing.
-    return _.isPlainObject(this.props.source)
-      ? <Source id={`${this.props.id}-source`} {...this.props.source} />
-      : null
+    return (
+      <Children>
+        {_.isPlainObject(this.props.source) ? (
+          <Source id={`${this.props.id}-source`} {...this.props.source} />
+        ) : null}
+        {this.state.added ? (
+          <LayerEvents {..._.pick(this.props, _.keys(LayerEvents.propTypes))} />
+        ) : null}
+      </Children>
+    )
   }
 }
 
