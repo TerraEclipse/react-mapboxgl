@@ -18,11 +18,14 @@ class ButtonLayer extends React.Component {
     ]).isRequired,
     sourceLayer: PropTypes.string,
 
-    // Layers & styles
+    // Layers
     base: PropTypes.object.isRequired,
     border: PropTypes.object,
     hover: PropTypes.object,
     hoverBorder: PropTypes.object,
+    cluster: PropTypes.object,
+    clusterBorder: PropTypes.object,
+    clusterLabel: PropTypes.object,
     active: PropTypes.object,
     activeBorder: PropTypes.object,
     activeProperty: PropTypes.oneOfType([
@@ -165,6 +168,7 @@ class ButtonLayer extends React.Component {
     let {
       id, source, sourceLayer, property,
       base, border, hover, hoverBorder,
+      cluster, clusterBorder, clusterLabel,
       active, activeBorder, activeProperty,
       cursor, onHoverOver, onHoverOut,
       clickEvent, avoidDoubleClick, doubleClickSpeed, onClick
@@ -210,6 +214,39 @@ class ButtonLayer extends React.Component {
           <Hover layer={id} {...{property, cursor, onHoverOver, onHoverOut}}>
             {this.renderHoverChildren}
           </Hover>
+        ) : null}
+
+        {cluster ? (
+          <Layer
+            id={`${id}-cluster`}
+            {..._.defaults({}, cluster, {
+              source: sourceId,
+              sourceLayer: sourceLayer
+            })}
+            filter={base.filter}
+          />
+        ) : null}
+
+        {clusterBorder ? (
+          <Layer
+            id={`${id}-cluster-border`}
+            {..._.defaults({}, clusterBorder, {
+              source: sourceId,
+              sourceLayer: sourceLayer
+            })}
+            filter={base.filter}
+          />
+        ) : null}
+
+        {clusterLabel ? (
+          <Layer
+            id={`${id}-cluster-label`}
+            {..._.defaults({}, clusterLabel, {
+              source: sourceId,
+              sourceLayer: sourceLayer
+            })}
+            filter={base.filter}
+          />
         ) : null}
 
         {active ? (
