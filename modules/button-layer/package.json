@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/button-layer",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -22,11 +22,11 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
-    "@react-mapboxgl/click": "^2.1.1",
-    "@react-mapboxgl/core": "^2.1.0",
+    "@react-mapboxgl/click": "^2.1.2",
+    "@react-mapboxgl/core": "^2.1.1",
     "@react-mapboxgl/docs": "^2.1.0",
-    "@react-mapboxgl/hover": "^2.1.0",
-    "@react-mapboxgl/toggle": "^2.1.1"
+    "@react-mapboxgl/hover": "^2.1.1",
+    "@react-mapboxgl/toggle": "^2.1.2"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",
