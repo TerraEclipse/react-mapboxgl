@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/toggle",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +22,7 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
-    "@react-mapboxgl/click": "^2.1.0",
+    "@react-mapboxgl/click": "^2.1.1",
     "@react-mapboxgl/core": "^2.1.0",
     "@react-mapboxgl/docs": "^2.1.0"
   },
