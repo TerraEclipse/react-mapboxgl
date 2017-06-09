@@ -4,8 +4,8 @@ import _ from 'lodash'
 
 class Image extends React.PureComponent {
   static propTypes = {
-    name: React.PropTypes.string,
-    image: React.PropTypes.any // HTMLImageElement | ArrayBufferView
+    name: PropTypes.string,
+    image: PropTypes.any // HTMLImageElement | ArrayBufferView
   }
 
   static contextTypes = {

@@ -5,7 +5,7 @@ import {Children, Image} from './'
 
 class LoadImages extends React.PureComponent {
   static propTypes = {
-    children: React.PropTypes.node
+    children: PropTypes.node
   }
 
   static contextTypes = {
