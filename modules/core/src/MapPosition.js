@@ -5,11 +5,17 @@ import _ from 'lodash'
 class MapPosition extends React.Component {
   static propTypes = {
     // Map position options.
-    center: PropTypes.arrayOf(PropTypes.number),
+    center: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.number),
+      PropTypes.object
+    ]),
     zoom: PropTypes.number,
     minZoom: PropTypes.number,
     maxZoom: PropTypes.number,
-    maxBounds: PropTypes.array,
+    maxBounds: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+    ]),
     bearing: PropTypes.number,
     pitch: PropTypes.number,
 
