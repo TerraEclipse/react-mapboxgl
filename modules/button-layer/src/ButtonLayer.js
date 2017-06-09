@@ -175,13 +175,15 @@ class ButtonLayer extends React.Component {
       cursor, onHoverOver, onHoverOut,
       clickEvent, avoidDoubleClick, doubleClickSpeed, onClick
     } = this.props
+
     let sourceId = (typeof source === 'string')
       ? source
       : (source.id || `${id}-source`)
+
     return (
       <Children>
         {typeof source !== 'string' ? (
-          <Source id={sourceId} {...source} />
+          <Source {..._.extend({}, source, {id: sourceId})} />
         ) : null}
 
         <Layer
