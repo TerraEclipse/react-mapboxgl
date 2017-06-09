@@ -72,7 +72,10 @@ class ButtonLayer extends React.Component {
         />
 
         {onClick ? (
-          <Click {...{clickEvent, avoidDoubleClick, doubleClickSpeed, onClick}} />
+          <Click
+            layer={id}
+            {...{clickEvent, avoidDoubleClick, doubleClickSpeed, onClick}}
+          />
         ) : null}
 
         {border ? (
