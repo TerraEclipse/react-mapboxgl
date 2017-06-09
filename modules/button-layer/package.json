@@ -22,6 +22,7 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
+    "@react-mapboxgl/click": "^2.1.0",
     "@react-mapboxgl/core": "^2.1.0",
     "@react-mapboxgl/docs": "^2.1.0",
     "@react-mapboxgl/hover": "^2.1.0",

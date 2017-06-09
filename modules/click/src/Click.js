@@ -5,7 +5,7 @@ import {Children, MapEvent, LayerEvent} from '@react-mapboxgl/core'
 class Click extends React.Component {
   static propTypes = {
     layer: PropTypes.string,
-    event: PropTypes.string,
+    clickEvent: PropTypes.string,
     avoidDoubleClick: PropTypes.bool,
     doubleClickSpeed: PropTypes.number,
     onClick: PropTypes.func,
@@ -13,7 +13,7 @@ class Click extends React.Component {
   }
 
   static defaultProps = {
-    event: 'click',
+    clickEvent: 'click',
     avoidDoubleClick: false,
     doubleClickSpeed: 300
   }
@@ -46,13 +46,13 @@ class Click extends React.Component {
   }
 
   render () {
-    let {event, layer, avoidDoubleClick} = this.props
+    let {clickEvent, layer, avoidDoubleClick} = this.props
     return (
       <Children>
         {layer ? (
-          <LayerEvent type={event} layer={layer} onChange={this.handleClick} />
+          <LayerEvent type={clickEvent} layer={layer} onChange={this.handleClick} />
         ) : (
-          <MapEvent type={event} onChange={this.handleClick} />
+          <MapEvent type={clickEvent} onChange={this.handleClick} />
         )}
         {avoidDoubleClick ? (
           <MapEvent type='dblclick' onChange={this.handleDoubleClick} />
