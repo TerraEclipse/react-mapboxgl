@@ -2,38 +2,38 @@
 # yarn lockfile v1
 
 
-"@react-mapboxgl/click@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/@react-mapboxgl/click/-/click-2.0.3.tgz#92b7252ec72df857d1583891b229f4df59b63ae5"
+"@react-mapboxgl/click@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/@react-mapboxgl/click/-/click-2.1.2.tgz#05d338575f8be530efddd2a9b0f8f88be57e598e"
   dependencies:
-    "@react-mapboxgl/core" "^2.0.3"
-    "@react-mapboxgl/docs" "^2.0.0"
+    "@react-mapboxgl/core" "^2.1.1"
+    "@react-mapboxgl/docs" "^2.1.0"
 
-"@react-mapboxgl/core@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/@react-mapboxgl/core/-/core-2.0.3.tgz#f76c3c4d83c3da29a528bfe393bb9482ade76b46"
+"@react-mapboxgl/core@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@react-mapboxgl/core/-/core-2.1.1.tgz#e337dc29c2c4f6e78284ba9994cde4a41e2cd929"
   dependencies:
-    "@react-mapboxgl/docs" "^2.0.0"
+    "@react-mapboxgl/docs" "^2.1.0"
 
-"@react-mapboxgl/docs@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/@react-mapboxgl/docs/-/docs-2.0.0.tgz#c4110f34f423a05e55cc7cb8e0646dc44a1be2c5"
+"@react-mapboxgl/docs@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/@react-mapboxgl/docs/-/docs-2.1.0.tgz#b4c81a6a49ed6ca9c6f9328f35a86d309797060f"
 
-"@react-mapboxgl/hover@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/@react-mapboxgl/hover/-/hover-2.0.3.tgz#bf4b8e6cccf2567217e06d839ec1561d52d68d79"
+"@react-mapboxgl/hover@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@react-mapboxgl/hover/-/hover-2.1.1.tgz#cb13449e39f84d3311f58a0392b36ccca9e4cc66"
   dependencies:
-    "@react-mapboxgl/core" "^2.0.3"
-    "@react-mapboxgl/docs" "^2.0.0"
+    "@react-mapboxgl/core" "^2.1.1"
+    "@react-mapboxgl/docs" "^2.1.0"
     "@terraeclipse/throttle-raf-decorator" "^1.0.4"
 
-"@react-mapboxgl/toggle@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/@react-mapboxgl/toggle/-/toggle-2.0.3.tgz#963bd5d89319ea1aa669b16d016a5783e437ca59"
+"@react-mapboxgl/toggle@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/@react-mapboxgl/toggle/-/toggle-2.1.2.tgz#b4ca4313464aa1b9103577b7ef329222689665c9"
   dependencies:
-    "@react-mapboxgl/click" "^2.0.3"
-    "@react-mapboxgl/core" "^2.0.3"
-    "@react-mapboxgl/docs" "^2.0.0"
+    "@react-mapboxgl/click" "^2.1.2"
+    "@react-mapboxgl/core" "^2.1.1"
+    "@react-mapboxgl/docs" "^2.1.0"
 
 "@terraeclipse/throttle-raf-decorator@^1.0.4":
   version "1.0.4"
@@ -50,6 +50,12 @@
 "@turf/meta@^4.4.0":
   version "4.4.0"
   resolved "https://registry.npmjs.org/@turf/meta/-/meta-4.4.0.tgz#4fa25d4cc0525bd4cdbaf4ff68a6f8ae81f1975f"
+
+"@turf/union@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.npmjs.org/@turf/union/-/union-4.4.0.tgz#cad6e957c5ef843f64b061d595b9e884b12cf710"
+  dependencies:
+    jsts "1.3.0"
 
 asap@~2.0.3:
   version "2.0.5"
@@ -95,6 +101,10 @@ isomorphic-fetch@^2.1.1:
 js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
+
+jsts@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/jsts/-/jsts-1.3.0.tgz#e93a76f97ac9bda7d4625d9d6470f0d60ac80e45"
 
 lodash@^4.17.4:
   version "4.17.4"

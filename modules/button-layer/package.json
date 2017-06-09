@@ -26,7 +26,8 @@
     "@react-mapboxgl/core": "^2.1.1",
     "@react-mapboxgl/docs": "^2.1.0",
     "@react-mapboxgl/hover": "^2.1.1",
-    "@react-mapboxgl/toggle": "^2.1.2"
+    "@react-mapboxgl/toggle": "^2.1.2",
+    "@turf/union": "^4.4.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4",

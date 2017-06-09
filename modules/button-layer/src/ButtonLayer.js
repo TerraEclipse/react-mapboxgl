@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import union from '@turf/union'
 import {Children, Layer, LayerEvents, Source} from '@react-mapboxgl/core'
 import Click from '@react-mapboxgl/click'
 import Hover from '@react-mapboxgl/hover'
@@ -31,6 +32,7 @@ class ButtonLayer extends React.Component {
     ]),
 
     // Hover
+    hoverMode: PropTypes.string, // Either 'auto' or 'filter'.
     cursor: PropTypes.string,
     onHoverOver: PropTypes.func,
     onHoverOut: PropTypes.func,
@@ -42,6 +44,121 @@ class ButtonLayer extends React.Component {
     onClick: PropTypes.func
 
     // LayerEvents (bound to base layer)
+  }
+
+  static defaultProps = {
+    hoverMode: 'auto'
+  }
+
+  static contextTypes = {
+    map: PropTypes.object
+  }
+
+  constructor () {
+    super()
+    this.renderHoverChildren = this.renderHoverChildren.bind(this)
+  }
+
+  unionFeatures (features) {
+    try {
+      let result = []
+      result.push(features.reduce((joined, next) => {
+        if (joined.geometry.type === 'Polygon' || joined.geometry.type === 'MultiPolygon') {
+          if (next.geometry.type === 'Polygon' || next.geometry.type === 'MultiPolygon') {
+            return union(joined, next)
+          } else {
+            result.push(next)
+            return joined
+          }
+        } else {
+          result.push(joined)
+          return next
+        }
+      }))
+      return result
+    } catch (e) {
+      console.warn('Error detected when trying to union hovered features.')
+      console.warn(e)
+      return features
+    }
+  }
+
+  renderHoverChildren ({properties}) {
+    let {map} = this.context
+    let {
+      id, source, sourceLayer, property, base,
+      hoverMode, hover, hoverBorder
+    } = this.props
+    let sourceId = (typeof source === 'string') ? source : source.id
+    let sourceDef = (typeof source === 'string') ? map.getSource(source) : source
+
+    // For GeoJSON we change the data on a hover <Source/>.
+    if (hoverMode !== 'filter' && sourceDef && sourceDef.type === 'geojson') {
+      let features = []
+      if (properties.length) {
+        features = this.unionFeatures(map.querySourceFeatures(sourceId, {
+          filter: ['in', property, ...properties]
+        }))
+      }
+      return (
+        <Children>
+          {(hover || hoverBorder) ? (
+            <Source
+              id={`${sourceId}-hover`}
+              type='geojson'
+              data={{type: 'FeatureCollection', features}}
+            />
+          ) : null}
+
+          {hover ? (
+            <Layer
+              id={`${id}-hover`}
+              {..._.defaults({source: `${sourceId}-hover`}, hover)}
+            />
+          ) : null}
+
+          {hoverBorder ? (
+            <Layer
+              id={`${id}-hover-border`}
+              {..._.defaults({source: `${sourceId}-hover`}, hoverBorder)}
+            />
+          ) : null}
+        </Children>
+      )
+    // For all other types, we use a filter on the layer.
+    } else {
+      return (
+        <Children>
+          {hover ? (
+            <Layer
+              id={`${id}-hover`}
+              {..._.defaults({}, hover, {
+                source: sourceId,
+                sourceLayer: sourceLayer
+              })}
+              filter={base.filter
+                ? ['all', ['==', property, properties[0] || ''], base.filter]
+                : ['==', property, properties[0] || '']
+              }
+            />
+          ) : null}
+
+          {hoverBorder ? (
+            <Layer
+              id={`${id}-hover-border`}
+              {..._.defaults({}, hoverBorder, {
+                source: sourceId,
+                sourceLayer: sourceLayer
+              })}
+              filter={base.filter
+                ? ['all', ['==', property, properties[0] || ''], base.filter]
+                : ['==', property, properties[0] || '']
+              }
+            />
+          ) : null}
+        </Children>
+      )
+    }
   }
 
   render () {
@@ -91,39 +208,7 @@ class ButtonLayer extends React.Component {
 
         {(hover || hoverBorder || cursor || onHoverOver || onHoverOut) ? (
           <Hover layer={id} {...{property, cursor, onHoverOver, onHoverOut}}>
-            {({properties}) => {
-              return (
-                <Children>
-                  {hover ? (
-                    <Layer
-                      id={`${id}-hover`}
-                      {..._.defaults({}, hover, {
-                        source: sourceId,
-                        sourceLayer: sourceLayer
-                      })}
-                      filter={base.filter
-                        ? ['all', ['==', property, properties[0] || ''], base.filter]
-                        : ['==', property, properties[0] || '']
-                      }
-                    />
-                  ) : null}
-
-                  {hoverBorder ? (
-                    <Layer
-                      id={`${id}-hover-border`}
-                      {..._.defaults({}, hoverBorder, {
-                        source: sourceId,
-                        sourceLayer: sourceLayer
-                      })}
-                      filter={base.filter
-                        ? ['all', ['==', property, properties[0] || ''], base.filter]
-                        : ['==', property, properties[0] || '']
-                      }
-                    />
-                  ) : null}
-                </Children>
-              )
-            }}
+            {this.renderHoverChildren}
           </Hover>
         ) : null}
 
