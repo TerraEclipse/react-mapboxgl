@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import {Children, Layer, Source} from '@react-mapboxgl/core'
+import {Children, Layer, LayerEvents, Source} from '@react-mapboxgl/core'
 import Hover from '@react-mapboxgl/hover'
 
 class ButtonLayer extends React.Component {
@@ -11,10 +11,10 @@ class ButtonLayer extends React.Component {
     source: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ]),
+    ]).isRequired,
     sourceLayer: PropTypes.string,
-    base: PropTypes.object,
-    borders: PropTypes.object,
+    base: PropTypes.object.isRequired,
+    border: PropTypes.object,
     hover: PropTypes.object,
     hoverBorder: PropTypes.object,
     active: PropTypes.object,
@@ -24,37 +24,38 @@ class ButtonLayer extends React.Component {
       PropTypes.number,
       PropTypes.bool
     ])
+    // LayerEvents (bound to base layer)
   }
 
   render () {
     let {
       id, source, sourceLayer, property,
-      base, borders, hover, hoverBorder,
+      base, border, hover, hoverBorder,
       active, activeBorder, activeProperty
     } = this.props
-
     let sourceId = typeof source === 'string' ? source : source.id
-
     return (
       <Children>
         {typeof source !== 'string' ? (
           <Source {...source} />
         ) : null}
 
-        {base ? (
-          <Layer
-            id={id}
-            {..._.defaults({}, base, {
+        <Layer
+          id={id}
+          {..._.defaults({},
+            base,
+            LayerEvents.pickEvents(this.props),
+            {
               source: sourceId,
               sourceLayer: sourceLayer
-            })}
-          />
-        ) : null}
+            }
+          )}
+        />
 
-        {borders ? (
+        {border ? (
           <Layer
-            id={`${id}-borders`}
-            {..._.defaults({}, borders, {
+            id={`${id}-border`}
+            {..._.defaults({}, border, {
               source: sourceId,
               sourceLayer: sourceLayer
             })}

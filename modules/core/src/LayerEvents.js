@@ -6,6 +6,10 @@ import LayerEvent from './LayerEvent'
 
 class LayerEvents extends React.PureComponent {
   static propTypes = {
+    // Layer id.
+    layer: PropTypes.string.isRequired,
+
+    // Events.
     onDblClick: PropTypes.func,
     onClick: PropTypes.func,
     onMouseMove: PropTypes.func,
@@ -21,18 +25,22 @@ class LayerEvents extends React.PureComponent {
     onContextMenu: PropTypes.func
   }
 
-  static contextTypes = {
-    map: PropTypes.object
+  static pickEvents (props) {
+    return _.pick(
+      props,
+      _.keys(_.omit(LayerEvents.propTypes, 'layer'))
+    )
   }
 
   render () {
     return (
       <Children>
         {_.map(LayerEvents.propTypes, (_, type) => (
-          this.props[type] ? (
+          (this.props[type] && (type !== 'layer')) ? (
             <LayerEvent
               key={type}
               type={type.slice(2).toLowerCase()}
+              layer={this.props.layer}
               onChange={this.props[type]}
             />
           ) : null

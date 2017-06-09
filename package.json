@@ -14,7 +14,7 @@
     "do": "./tools/module-do",
     "nuke": "yarn run clean && lerna clean --yes",
     "reinstall": "yarn run nuke && yarn run exec yarn && yarn run lerna bootstrap",
-    "storybook": "NODE_ENV=develop BABEL_ENV=commonjs start-storybook -p 3005 -c ./tools/.storybook",
+    "storybook": "NODE_ENV=develop BABEL_ENV=storybook start-storybook -p 3005 -c ./tools/.storybook",
     "docs": "BABEL_ENV=commonjs build-storybook -c ./tools/.storybook -o ./docs",
     "view-coverage": "./tools/view-coverage"
   },
@@ -27,6 +27,7 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.1",
     "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-module-resolver": "^3.0.0-beta.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",

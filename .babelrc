@@ -4,6 +4,27 @@
     ["babel-plugin-transform-react-jsx"]
   ],
   "env": {
+    "storybook": {
+      "presets": [
+        ["babel-preset-env", {
+          "loose": true,
+          "modules": "commonjs",
+          "targets": {
+            "browsers": ["last 2 versions", ">5%"]
+          }
+        }]
+      ],
+      "plugins": [
+        ["babel-plugin-transform-decorators-legacy"],
+        ["babel-plugin-transform-class-properties"],
+        ["babel-plugin-module-resolver", {
+          "alias": {
+            "^@react-mapboxgl/([^/]+)(/.+)?": "../\\1/src\\2"
+          },
+          "cwd": "packagejson"
+        }]
+      ]
+    },
     "commonjs": {
       "presets": [
         ["babel-preset-env", {

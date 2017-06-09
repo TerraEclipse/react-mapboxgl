@@ -60,7 +60,7 @@ class Story extends React.Component {
               'fill-opacity': 0.5
             }
           }}
-          borders={{
+          border={{
             type: 'line',
             paint: {
               'line-color': '#627BC1',

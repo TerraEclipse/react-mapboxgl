@@ -124,7 +124,10 @@ class Layer extends React.Component {
           <Source id={`${this.props.id}-source`} {...this.props.source} />
         ) : null}
         {this.state.added ? (
-          <LayerEvents {..._.pick(this.props, _.keys(LayerEvents.propTypes))} />
+          <LayerEvents
+            layer={this.props.id}
+            {...LayerEvents.pickEvents(this.props)}
+          />
         ) : null}
       </Children>
     )
