@@ -92,13 +92,20 @@ class ButtonLayer extends React.Component {
       id, source, sourceLayer, property, base,
       hoverMode, hover, hoverBorder
     } = this.props
+
     let sourceId = (typeof source === 'string')
       ? source
       : (source.id || `${id}-source`)
     let sourceDef = map.getSource(sourceId)
+    let sourceType = sourceDef && sourceDef.type
+
+    // If we don't have a sourceType yet, render nothing.
+    if (!sourceType) {
+      return null
+    }
 
     // For GeoJSON we change the data on a hover <Source/>.
-    if (hoverMode !== 'filter' && sourceDef && sourceDef.type === 'geojson') {
+    if (hoverMode !== 'filter' && sourceType === 'geojson') {
       let features = []
       if (properties.length) {
         features = this.unionFeatures(map.querySourceFeatures(sourceId, {

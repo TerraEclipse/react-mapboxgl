@@ -24,6 +24,7 @@ class Story extends React.Component {
   }
 
   handleClick (e, features) {
+    console.log(e)
     action('click')(features)
   }
 

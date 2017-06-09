@@ -58,6 +58,7 @@ class Source extends React.Component {
     // If any of these props change, we have to just recreate the
     // source from scratch.
     let invalidate = [
+      'id',
       'type',
       'url',
       'tiles',
@@ -76,7 +77,7 @@ class Source extends React.Component {
       _.pick(this.props, invalidate),
       _.pick(nextProps, invalidate)
     )) {
-      this.removeSource(this.props.id)
+      this.removeSource(this.props)
       this.addSource(nextProps)
       return
     }
@@ -123,7 +124,7 @@ class Source extends React.Component {
 
     // Add the source.
     map.addSource(props.id, options)
-    map.fire('_addSource', this.props.id)
+    map.fire('_addSource', props.id)
   }
 
   removeSource (props) {

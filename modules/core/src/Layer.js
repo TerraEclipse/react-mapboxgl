@@ -50,50 +50,29 @@ class Layer extends React.Component {
   }
 
   componentDidMount () {
-    let {map} = this.context
-    let options = {}
-
-    // Grab basic options from props.
-    _.extend(options, _.omitBy(_.pick(this.props, [
-      'id',
-      'type',
-      'metadata',
-      'minzoom',
-      'maxzoom',
-      'filter',
-      'layout',
-      'paint'
-    ]), _.isNil))
-
-    // Grab 'ref' from 'copy'.
-    if (this.props.copy) {
-      options.ref = this.props.copy
-    }
-
-    // Check if we have a source id or object.
-    if (_.isPlainObject(this.props.source)) {
-      options.source = this.props.source.id || `${this.props.id}-source`
-    } else {
-      options.source = this.props.source
-    }
-    if (this.props.sourceLayer) {
-      options['source-layer'] = this.props.sourceLayer
-    }
-
-    // Add the layer to the map.
-    map.addLayer(options, this.props.before)
-    map.fire('_addLayer', this.props.id)
-    this.setState({added: true})
+    this.addLayer(this.props)
   }
 
   componentWillUnmount () {
-    let {map} = this.context
-    map.removeLayer(this.props.id)
-    map.fire('_removeLayer', this.props.id)
+    this.removeLayer(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
     let {map} = this.context
+
+    // Have to recreate layer if these change.
+    if (
+      !_.isEqual(this.props.id, nextProps.id) ||
+      !_.isEqual(this.props.type, nextProps.type) ||
+      !_.isEqual(this.props.source, nextProps.source) ||
+      !_.isEqual(this.props.sourceLayer, nextProps.sourceLayer) ||
+      !_.isEqual(this.props.metadata, nextProps.metadata) ||
+      !_.isEqual(this.props.copy, nextProps.copy)
+    ) {
+      this.removeLayer(this.props)
+      this.addLayer(nextProps)
+      return
+    }
 
     if (!_.isEqual(this.props.filter, nextProps.filter)) {
       map.setFilter(this.props.id, nextProps.filter)
@@ -117,11 +96,58 @@ class Layer extends React.Component {
     }
   }
 
+  addLayer (props) {
+    let {map} = this.context
+    let options = {}
+
+    // Grab basic options from props.
+    _.extend(options, _.omitBy(_.pick(props, [
+      'id',
+      'type',
+      'metadata',
+      'minzoom',
+      'maxzoom',
+      'filter',
+      'layout',
+      'paint'
+    ]), _.isNil))
+
+    // Grab 'ref' from 'copy'.
+    if (props.copy) {
+      options.ref = props.copy
+    }
+
+    // Check if we have a source id or object.
+    if (_.isPlainObject(props.source)) {
+      options.source = props.source.id || `${props.id}-source`
+    } else {
+      options.source = props.source
+    }
+    if (props.sourceLayer) {
+      options['source-layer'] = props.sourceLayer
+    }
+
+    // Add the layer to the map.
+    map.addLayer(options, props.before)
+    map.fire('_addLayer', props.id)
+    this.setState({added: true})
+  }
+
+  removeLayer (props) {
+    let {map} = this.context
+    map.removeLayer(props.id)
+    map.fire('_removeLayer', props.id)
+    this.setState({added: false})
+  }
+
   render () {
     return (
       <Children>
         {_.isPlainObject(this.props.source) ? (
-          <Source id={`${this.props.id}-source`} {...this.props.source} />
+          <Source
+            id={`${this.props.id}-source`}
+            {...this.props.source}
+          />
         ) : null}
         {this.state.added ? (
           <LayerEvents
