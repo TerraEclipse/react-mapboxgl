@@ -14,7 +14,7 @@ import {mapDefaults} from '@react-mapboxgl/docs'
 import {MapGL} from '@react-mapboxgl/core'
 import Hover from '@react-mapboxgl/hover'
 import Toggle from '@react-mapboxgl/toggle'
-import ButtonLayer from './'
+import ButtonLayer from '../'
 
 class Story extends React.Component {
   state = {

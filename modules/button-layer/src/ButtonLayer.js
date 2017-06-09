@@ -9,7 +9,7 @@ import Hover from '@react-mapboxgl/hover'
 class ButtonLayer extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    property: PropTypes.string.isRequired,
+    property: PropTypes.string,
 
     // Source
     source: PropTypes.oneOfType([
@@ -92,8 +92,10 @@ class ButtonLayer extends React.Component {
       id, source, sourceLayer, property, base,
       hoverMode, hover, hoverBorder
     } = this.props
-    let sourceId = (typeof source === 'string') ? source : source.id
-    let sourceDef = (typeof source === 'string') ? map.getSource(source) : source
+    let sourceId = (typeof source === 'string')
+      ? source
+      : (source.id || `${id}-source`)
+    let sourceDef = map.getSource(sourceId)
 
     // For GeoJSON we change the data on a hover <Source/>.
     if (hoverMode !== 'filter' && sourceDef && sourceDef.type === 'geojson') {
@@ -173,11 +175,13 @@ class ButtonLayer extends React.Component {
       cursor, onHoverOver, onHoverOut,
       clickEvent, avoidDoubleClick, doubleClickSpeed, onClick
     } = this.props
-    let sourceId = typeof source === 'string' ? source : source.id
+    let sourceId = (typeof source === 'string')
+      ? source
+      : (source.id || `${id}-source`)
     return (
       <Children>
         {typeof source !== 'string' ? (
-          <Source {...source} />
+          <Source id={sourceId} {...source} />
         ) : null}
 
         <Layer
@@ -223,7 +227,6 @@ class ButtonLayer extends React.Component {
               source: sourceId,
               sourceLayer: sourceLayer
             })}
-            filter={base.filter}
           />
         ) : null}
 
@@ -234,7 +237,6 @@ class ButtonLayer extends React.Component {
               source: sourceId,
               sourceLayer: sourceLayer
             })}
-            filter={base.filter}
           />
         ) : null}
 
@@ -245,7 +247,6 @@ class ButtonLayer extends React.Component {
               source: sourceId,
               sourceLayer: sourceLayer
             })}
-            filter={base.filter}
           />
         ) : null}
 
