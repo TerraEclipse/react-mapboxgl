@@ -28,8 +28,29 @@ class Hover extends React.Component {
 
   constructor () {
     super()
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
     this.handleMouseMove = this.handleMouseMove.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
+  }
+
+  handleMouseEnter (e) {
+    let propertyPath = `properties.${this.props.property}`
+    let properties = _.map(e.features, propertyPath)
+
+    if (this.props.cursor) {
+      this.context.map.getCanvas().style.cursor = this.props.cursor
+    }
+
+    if (this.props.onHoverOut) {
+      _.each(e.features, (feature) => {
+        this.props.onHoverOver(e, feature)
+      })
+    }
+
+    this.setState({
+      properties: properties,
+      features: e.features
+    })
   }
 
   handleMouseMove (e) {
@@ -76,6 +97,11 @@ class Hover extends React.Component {
   render () {
     return (
       <Children>
+        <LayerEvent
+          type='mouseenter'
+          layer={this.props.layer}
+          onChange={this.handleMouseEnter}
+        />
         <LayerEvent
           type='mousemove'
           layer={this.props.layer}
