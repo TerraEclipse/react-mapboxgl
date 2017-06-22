@@ -54,7 +54,6 @@ class Hover extends React.Component {
     }
   }
 
-  @throttleRAF
   handleMouseLeave (e) {
     if (this.state.properties && this.props.onHoverOut) {
       _.each(this.state.features, (feature) => {
