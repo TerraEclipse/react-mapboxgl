@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import throttleRAF from '@terraeclipse/throttle-raf-decorator'
 import {Children, LayerEvent} from '@react-mapboxgl/core'
 
 class Hover extends React.Component {
@@ -33,7 +32,6 @@ class Hover extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
   }
 
-  @throttleRAF
   handleMouseMove (e) {
     let propertyPath = `properties.${this.props.property}`
     let properties = _.map(e.features, propertyPath)

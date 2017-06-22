@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 
 class LayerEvent extends React.PureComponent {
   static propTypes = {
@@ -25,7 +24,11 @@ class LayerEvent extends React.PureComponent {
 
   componentWillReceiveProps (nextProps) {
     let {map} = this.context
-    if (_.isEqual(this.props, nextProps)) {
+    if (
+      (this.props.type !== nextProps.type) ||
+      (this.props.layer !== nextProps.layer) ||
+      (this.props.onChange !== nextProps.onChange)
+    ) {
       map.off(this.props.type, this.props.layer, this.props.onChange)
       map.on(nextProps.type, nextProps.layer, nextProps.onChange)
     }
