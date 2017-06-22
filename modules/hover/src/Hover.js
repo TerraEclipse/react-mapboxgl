@@ -27,6 +27,12 @@ class Hover extends React.Component {
     features: []
   }
 
+  constructor () {
+    super()
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+  }
+
   @throttleRAF
   handleMouseMove (e) {
     let propertyPath = `properties.${this.props.property}`
