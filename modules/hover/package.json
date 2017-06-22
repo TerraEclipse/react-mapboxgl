@@ -1,6 +1,6 @@
 {
   "name": "@react-mapboxgl/hover",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +22,7 @@
     "coverage": "../../tools/test-module --coverage"
   },
   "dependencies": {
-    "@react-mapboxgl/core": "^2.1.2",
+    "@react-mapboxgl/core": "^2.1.3",
     "@react-mapboxgl/docs": "^2.1.0",
     "@terraeclipse/throttle-raf-decorator": "^1.0.4"
   },
